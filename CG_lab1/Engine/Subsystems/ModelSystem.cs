@@ -71,7 +71,9 @@ namespace Manager.Subsystems
                     {
                         Matrix MainRotorWorldMatrix;
                         MainRotorWorldMatrix = modelBone.Transform;
-                        MainRotorWorldMatrix *= Matrix.CreateRotationY(elapsedGameTime * 0.01f);
+                        MainRotorWorldMatrix *= Matrix.CreateTranslation(-modelBone.Transform.Translation); //Move the steering axis to the world's origin (x=0,y=0,z=0)
+                        MainRotorWorldMatrix *= Matrix.CreateRotationY(elapsedGameTime * 0.01f);    //Rotate by this number of radians per frame.
+                        MainRotorWorldMatrix *= Matrix.CreateTranslation(modelBone.Transform.Translation);  //Move the steering axis back where it was.
                         modelBone.Transform = MainRotorWorldMatrix;
                     }
                     if (modelBone.Name == "Back_Rotor")
