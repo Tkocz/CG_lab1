@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
-using Engine;
+using Manager;
 
-namespace Engine.Subsystems
+namespace Manager.Subsystems
 {
     public class HeightmapSystem : Core
     {
         //Creates and renders all the HeightmapComponents.
-        public override void draw(GameTime gameTime, Matrix world, Matrix view, Matrix projection)
+        public override void draw(GameTime gameTime)
         {
         }
     }

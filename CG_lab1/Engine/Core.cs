@@ -4,12 +4,12 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Engine
+namespace Manager
 {
     public abstract class Core
     {
-        public virtual void update(GameTime gameTime, Matrix world, Matrix view, Matrix projection) { }
-        public virtual void draw(GameTime gameTime, Matrix world, Matrix view, Matrix projection) { }
+        public virtual void update(GameTime gameTime) { }
+        public virtual void draw(GameTime gameTime) { }
         public abstract class Component { }
         public class Entity
         {
@@ -33,7 +33,7 @@ namespace Engine
         public abstract class GameImpl
         {
             public abstract void init();
-            public abstract void update(GameTime gameTime, Matrix world, Matrix view, Matrix projection);
+            public abstract void update(GameTime gameTime);
 
         }
     }

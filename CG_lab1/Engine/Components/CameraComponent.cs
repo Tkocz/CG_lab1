@@ -1,12 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using static Engine.Core;
+using static Manager.Core;
 
-namespace Engine.Components
+namespace Manager.Components
 {
     public class CameraComponent : Component
     {
-        //Holds camera specific data such as the FOV, aspect ratio and near/far plane
+        public Matrix view;
+        public Matrix projection;
+        public CameraComponent()
+        {
+            view = Matrix.CreateLookAt(new Vector3(0, 0, 20), new Vector3(0, 0, 0), Vector3.Up);
+            projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver2, Engine.GetInst().GraphicsDevice.Viewport.AspectRatio, 0.1f, 1000f);
+        }
     }
 }

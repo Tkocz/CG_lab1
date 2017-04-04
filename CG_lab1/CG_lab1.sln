@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26228.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CG_lab1", "CG_lab1\CG_lab1.csproj", "{3FBBABBA-186A-47C7-8E85-F15CF3EA9851}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engine", "Engine\Engine.csproj", "{64F14C7B-AA1E-4154-BB71-A1B67E6B5E26}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Manager", "Engine\Manager.csproj", "{64F14C7B-AA1E-4154-BB71-A1B67E6B5E26}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

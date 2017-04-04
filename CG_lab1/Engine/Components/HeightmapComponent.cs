@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using static Engine.Core;
+using static Manager.Core;
 
-namespace Engine.Components
+namespace Manager.Components
 {
     public class HeightmapComponent : Component
     {

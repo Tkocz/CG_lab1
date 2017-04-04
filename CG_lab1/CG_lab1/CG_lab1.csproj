@@ -115,9 +115,9 @@
     <Content Include="Resources\US_Canyon.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Engine\Engine.csproj">
+    <ProjectReference Include="..\Engine\Manager.csproj">
       <Project>{64f14c7b-aa1e-4154-bb71-a1b67e6b5e26}</Project>
-      <Name>Engine</Name>
+      <Name>Manager</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
-using Engine;
+using Manager;
 
-namespace Engine.Subsystems
+namespace Manager.Subsystems
 {
     public class CameraSystem : Core
     {
         //Computes the view and projection matrix for all the CameraComponents.
-        public override void update(GameTime gameTime, Matrix world, Matrix view, Matrix projection)
+        public override void update(GameTime gameTime)
         {
+
         }
     }
 }

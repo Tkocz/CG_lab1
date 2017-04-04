@@ -1,12 +1,11 @@
-﻿using Engine.chopper;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
-using static Engine.Core;
+using static Manager.Core;
 
 
-namespace Engine
+namespace Manager
 {
     /// <summary>
     /// This is the main type for your game.
@@ -15,15 +14,8 @@ namespace Engine
     {
         private static Engine inst;
         private GameImpl gameImpl;
-        private GraphicsDeviceManager graphics;
-
-        private Matrix world;
-        private Matrix view;
-        private Matrix projection;
-
-        private Chopper chopper;
-        SpriteBatch spriteBatch;
-        public readonly List<Core> Managers = new List<Core>();
+        GraphicsDeviceManager graphics;
+        public readonly List<Core> Subsystems = new List<Core>();
         public readonly Dictionary<int, Entity> Entities = new Dictionary<int, Entity>();
         private int entityId = 1;
 
@@ -35,7 +27,6 @@ namespace Engine
             Entities[entity.id] = entity;
             return entity;
         }
-
         public Engine(GameImpl gameImpl)
         {
             graphics = new GraphicsDeviceManager(this);
@@ -72,7 +63,7 @@ namespace Engine
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            //spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
         }
@@ -97,14 +88,12 @@ namespace Engine
                 Exit();
 
             // TODO: Add your update logic here
-            float t = (float)gameTime.TotalGameTime.TotalSeconds;
 
-            float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            foreach (var subsystem in Managers)
+            foreach (var subsystem in Subsystems)
             {
-                subsystem.update(gameTime, world, view, projection);
+                subsystem.update(gameTime);
             }
-            gameImpl.update(gameTime, world, view, projection);
+            gameImpl.update(gameTime);
             base.Update(gameTime);
         }
 
@@ -117,11 +106,10 @@ namespace Engine
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            float t = (float)gameTime.TotalGameTime.TotalSeconds;
-            float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            foreach (var subsystem in Managers)
+
+            foreach (var subsystem in Subsystems)
             {
-                subsystem.draw(gameTime, world, view, projection);
+                subsystem.draw(gameTime);
             }
             base.Draw(gameTime);
         }

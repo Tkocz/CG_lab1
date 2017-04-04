@@ -1,5 +1,5 @@
 ﻿using System;
-using Engine;
+using Manager;
 
 namespace CG_lab1
 {
@@ -14,7 +14,7 @@ namespace CG_lab1
         [STAThread]
         static void Main()
         {
-            Engine.Engine.RunGame(new Game1());
+            Engine.RunGame(new Game1());
         }
     }
 }

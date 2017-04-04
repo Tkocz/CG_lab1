@@ -1,5 +1,5 @@
-﻿using Engine;
-using Engine.Components;
+﻿using Manager;
+using Manager.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Engine.Core;
+using static Manager.Core;
 
 namespace CG_lab1.Entities
 {
@@ -20,7 +20,8 @@ namespace CG_lab1.Entities
                 new CameraComponent(),
                 new HeightmapComponent(),
                 new ModelComponent("Chopper"),
-                new TransformComponent(scale, position, rotation, objectWorld, speed)
+                new TransformComponent(scale, position, rotation, objectWorld, speed),
+                new InputComponent()
             };
         }
     }

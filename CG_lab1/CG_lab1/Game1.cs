@@ -2,11 +2,11 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using static Engine.Core;
-using Engine;
-using Engine.Subsystems;
+using static Manager.Core;
+using Manager;
+using Manager.Subsystems;
 using CG_lab1.Entities;
-using Engine.Components;
+using Manager.Components;
 
 namespace CG_lab1
 {
@@ -15,26 +15,27 @@ namespace CG_lab1
     /// </summary>
     public class Game1 : GameImpl
     {
+        static Matrix world = Matrix.Identity;
         Entity chopper;
         public override void init()
         {
-            Engine.Engine.GetInst().Managers.Add(new CameraSystem());
-            Engine.Engine.GetInst().Managers.Add(new HeightmapSystem());
-            Engine.Engine.GetInst().Managers.Add(new ModelSystem());
-            Engine.Engine.GetInst().Managers.Add(new TransformSystem());
+            Engine.GetInst().Subsystems.Add(new CameraSystem());
+            Engine.GetInst().Subsystems.Add(new HeightmapSystem());
+            Engine.GetInst().Subsystems.Add(new ModelSystem(world));
+            Engine.GetInst().Subsystems.Add(new TransformSystem());
+            Engine.GetInst().Subsystems.Add(new InputSystem());
 
-            chopper = Engine.Engine.GetInst().addEntity(Chopper.createComponents(
+            chopper = Engine.GetInst().addEntity(Chopper.createComponents(
                 new Vector3(5, 5, 5), 
                 new Vector3(0, 0, -50),
-                Matrix.Identity, 
-                Matrix.Identity,
+                world, 
+                world,
                 new Vector3(0.1f, 0.1f, 0.1f)
                 ));
         }
 
-        public override void update(GameTime gameTime, Matrix world, Matrix view, Matrix projection)
+        public override void update(GameTime gameTime)
         {
-            throw new NotImplementedException();
         }
     }
 }
