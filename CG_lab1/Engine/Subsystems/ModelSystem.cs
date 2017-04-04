@@ -51,5 +51,39 @@ namespace Manager.Subsystems
                 }
             }
         }
+        public override void update(GameTime gameTime)
+        {
+            foreach (var entity in Engine.GetInst().Entities.Values)
+            {
+                var modelComponent = entity.GetComponent<ModelComponent>();
+                if (!modelComponent.hasTransformable)
+                    continue;
+                var transformComponent = entity.GetComponent<TransformComponent>();
+                var cameraModel = entity.GetComponent<CameraComponent>();
+                var scale = transformComponent.scale;
+                var rotation = transformComponent.rotation;
+                var objectWorld = transformComponent.objectWorld;
+                var elapsedGameTime = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+
+                foreach (ModelBone modelBone in modelComponent.model.Bones)
+                {
+                    if(modelBone.Name == "Main_Rotor")
+                    {
+                        Matrix MainRotorWorldMatrix;
+                        MainRotorWorldMatrix = modelBone.Transform;
+                        MainRotorWorldMatrix *= Matrix.CreateRotationY(elapsedGameTime * 0.01f);
+                        modelBone.Transform = MainRotorWorldMatrix;
+                    }
+                    if (modelBone.Name == "Back_Rotor")
+                    {
+                        Matrix BackRotorWorldMatrix;
+                        BackRotorWorldMatrix = modelBone.Transform;
+
+                        BackRotorWorldMatrix *= Matrix.CreateRotationX(elapsedGameTime * 0.01f);
+                        modelBone.Transform = BackRotorWorldMatrix;
+                    }
+                }
+            }
+        }
     }
 }

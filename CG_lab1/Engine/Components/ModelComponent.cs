@@ -10,9 +10,11 @@ namespace Manager.Components
     {
         //Holds a model and the data transforms for its meshes
         public Model model;
-        public ModelComponent(string modelName)
+        public bool hasTransformable;
+        public ModelComponent(string modelName, bool hasTransformable)
         {
             model = Engine.GetInst().Content.Load<Model>(modelName);
+            this.hasTransformable = hasTransformable;
         }
     }
 }

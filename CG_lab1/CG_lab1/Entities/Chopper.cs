@@ -19,7 +19,7 @@ namespace CG_lab1.Entities
             {
                 new CameraComponent(),
                 new HeightmapComponent(),
-                new ModelComponent("Chopper"),
+                new ModelComponent("Chopper", true),
                 new TransformComponent(scale, position, rotation, objectWorld, speed),
                 new InputComponent()
             };
