@@ -80,8 +80,10 @@ namespace Manager.Subsystems
                     {
                         Matrix BackRotorWorldMatrix;
                         BackRotorWorldMatrix = modelBone.Transform;
-
-                        BackRotorWorldMatrix *= Matrix.CreateRotationX(elapsedGameTime * 0.01f);
+                        BackRotorWorldMatrix = modelBone.Transform;
+                        BackRotorWorldMatrix *= Matrix.CreateTranslation(-modelBone.Transform.Translation); //Move the steering axis to the world's origin (x=0,y=0,z=0)
+                        BackRotorWorldMatrix *= Matrix.CreateRotationX(elapsedGameTime * 0.01f);    //Rotate by this number of radians per frame.
+                        BackRotorWorldMatrix *= Matrix.CreateTranslation(modelBone.Transform.Translation);  //Move the steering axis back where it was.
                         modelBone.Transform = BackRotorWorldMatrix;
                     }
                 }
