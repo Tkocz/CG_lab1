@@ -105,6 +105,7 @@
     </None>
     <None Include="app.manifest" />
     <None Include="Content\Chopper.fbx" />
+    <None Include="Content\skybox.x" />
     <None Include="Resources\assignment_1.pdf" />
     <None Include="Resources\Chopper.fbx" />
   </ItemGroup>
@@ -112,6 +113,7 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\skybox_texture.jpg" />
     <Content Include="Resources\US_Canyon.png" />
   </ItemGroup>
   <ItemGroup>

@@ -10,6 +10,8 @@ namespace Manager.Subsystems
     public class ModelSystem : Core
     {
         private Matrix world;
+        private static float skyscale = 10000f;
+        private Matrix skyworldM, projM;
 
         public ModelSystem(Matrix world)
         {
@@ -22,32 +24,47 @@ namespace Manager.Subsystems
             foreach (var entity in Engine.GetInst().Entities.Values)
             {
                 var modelComponent = entity.GetComponent<ModelComponent>();
+                if (modelComponent == null)
+                    continue;
                 var transformComponent = entity.GetComponent<TransformComponent>();
-                var cameraModel = entity.GetComponent<CameraComponent>();
-                var scale = transformComponent.scale;
-                var rotation = transformComponent.rotation;
-                var objectWorld = transformComponent.objectWorld;
+                var cameraComponent = entity.GetComponent<CameraComponent>();
 
 
-                foreach (ModelMesh modelMesh in modelComponent.model.Meshes)
+                if (cameraComponent != null)
                 {
-                    //System.Console.WriteLine(modelMesh.Name);
-                    foreach (BasicEffect effect in modelMesh.Effects)
+                    var scale = transformComponent.scale;
+                    var rotation = transformComponent.rotation;
+                    var objectWorld = transformComponent.objectWorld;
+
+                    foreach (ModelMesh modelMesh in modelComponent.model.Meshes)
                     {
-                        objectWorld = Matrix.CreateScale(scale) * rotation * Matrix.CreateTranslation(transformComponent.position);
-                        effect.World = modelMesh.ParentBone.Transform * objectWorld * world;
-                        effect.View = cameraModel.view;
-                        effect.Projection = cameraModel.projection;
-
-                        effect.EnableDefaultLighting();
-                        effect.LightingEnabled = true;
-
-                        foreach (EffectPass p in effect.CurrentTechnique.Passes)
+                        //System.Console.WriteLine(modelMesh.Name);
+                        foreach (BasicEffect effect in modelMesh.Effects)
                         {
-                            p.Apply();
-                            modelMesh.Draw();
+                            objectWorld = Matrix.CreateScale(scale) * rotation * Matrix.CreateTranslation(transformComponent.position);
+                            effect.World = modelMesh.ParentBone.Transform * objectWorld * world;
+                            effect.View = cameraComponent.view;
+                            effect.Projection = cameraComponent.projection;
+
+                            effect.EnableDefaultLighting();
+                            effect.LightingEnabled = true;
+
+                            foreach (EffectPass p in effect.CurrentTechnique.Passes)
+                            {
+                                p.Apply();
+                                modelMesh.Draw();
+                            }
                         }
                     }
+                }
+                else
+                {
+                    skyworldM = Matrix.CreateScale(skyscale, skyscale, skyscale);
+                    projM = Matrix.CreatePerspectiveFieldOfView(MathHelper.Pi / 3, 1f, 1f, 10f * skyscale);
+                    modelComponent.modelEffect.World = skyworldM;
+                    modelComponent.modelEffect.View = Matrix.CreateLookAt(new Vector3(0, 0, 20), new Vector3(0, 0, 0), Vector3.Up);
+                    modelComponent.modelEffect.Projection = projM;
+                    modelComponent.model.Meshes[0].Draw();
                 }
             }
         }
@@ -59,7 +76,7 @@ namespace Manager.Subsystems
                 if (!modelComponent.hasTransformable)
                     continue;
                 var transformComponent = entity.GetComponent<TransformComponent>();
-                var cameraModel = entity.GetComponent<CameraComponent>();
+                var cameraComponent = entity.GetComponent<CameraComponent>();
                 var scale = transformComponent.scale;
                 var rotation = transformComponent.rotation;
                 var objectWorld = transformComponent.objectWorld;
@@ -71,9 +88,9 @@ namespace Manager.Subsystems
                     {
                         Matrix MainRotorWorldMatrix;
                         MainRotorWorldMatrix = modelBone.Transform;
-                        MainRotorWorldMatrix *= Matrix.CreateTranslation(-modelBone.Transform.Translation); //Move the steering axis to the world's origin (x=0,y=0,z=0)
-                        MainRotorWorldMatrix *= Matrix.CreateRotationY(elapsedGameTime * 0.01f);    //Rotate by this number of radians per frame.
-                        MainRotorWorldMatrix *= Matrix.CreateTranslation(modelBone.Transform.Translation);  //Move the steering axis back where it was.
+                        MainRotorWorldMatrix *= Matrix.CreateTranslation(-modelBone.Transform.Translation); 
+                        MainRotorWorldMatrix *= Matrix.CreateRotationY(elapsedGameTime * 0.01f);
+                        MainRotorWorldMatrix *= Matrix.CreateTranslation(modelBone.Transform.Translation);  
                         modelBone.Transform = MainRotorWorldMatrix;
                     }
                     if (modelBone.Name == "Back_Rotor")
@@ -81,9 +98,9 @@ namespace Manager.Subsystems
                         Matrix BackRotorWorldMatrix;
                         BackRotorWorldMatrix = modelBone.Transform;
                         BackRotorWorldMatrix = modelBone.Transform;
-                        BackRotorWorldMatrix *= Matrix.CreateTranslation(-modelBone.Transform.Translation); //Move the steering axis to the world's origin (x=0,y=0,z=0)
-                        BackRotorWorldMatrix *= Matrix.CreateRotationX(elapsedGameTime * 0.01f);    //Rotate by this number of radians per frame.
-                        BackRotorWorldMatrix *= Matrix.CreateTranslation(modelBone.Transform.Translation);  //Move the steering axis back where it was.
+                        BackRotorWorldMatrix *= Matrix.CreateTranslation(-modelBone.Transform.Translation);
+                        BackRotorWorldMatrix *= Matrix.CreateRotationX(elapsedGameTime * 0.01f);
+                        BackRotorWorldMatrix *= Matrix.CreateTranslation(modelBone.Transform.Translation);        
                         modelBone.Transform = BackRotorWorldMatrix;
                     }
                 }

@@ -9,8 +9,8 @@
     <ProjectGuid>{64F14C7B-AA1E-4154-BB71-A1B67E6B5E26}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Engine</RootNamespace>
-    <AssemblyName>Engine</AssemblyName>
+    <RootNamespace>Manager</RootNamespace>
+    <AssemblyName>Manager</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>DesktopGL</MonoGamePlatform>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -55,6 +55,7 @@
     <Compile Include="Subsystems\HeightmapSystem.cs" />
     <Compile Include="Subsystems\InputSystem.cs" />
     <Compile Include="Subsystems\ModelSystem.cs" />
+    <Compile Include="Subsystems\SkyboxSystem.cs" />
     <Compile Include="Subsystems\TransformSystem.cs" />
   </ItemGroup>
   <ItemGroup>

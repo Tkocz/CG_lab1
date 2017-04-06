@@ -17,6 +17,8 @@ namespace Manager.Subsystems
             foreach (var entity in Engine.GetInst().Entities.Values)
             {
                 var tC = entity.GetComponent<TransformComponent>();
+                if (tC == null)
+                    continue;
 
                 // -----
                 // Scale

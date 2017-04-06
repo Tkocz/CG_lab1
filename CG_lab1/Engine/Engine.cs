@@ -14,7 +14,7 @@ namespace Manager
     {
         private static Engine inst;
         private GameImpl gameImpl;
-        GraphicsDeviceManager graphics;
+        public GraphicsDeviceManager graphics;
         public readonly List<Core> Subsystems = new List<Core>();
         public readonly Dictionary<int, Entity> Entities = new Dictionary<int, Entity>();
         private int entityId = 1;
@@ -30,6 +30,8 @@ namespace Manager
         public Engine(GameImpl gameImpl)
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferWidth = 1280;
+            graphics.PreferredBackBufferHeight = 720;
             Content.RootDirectory = "Content";
             this.gameImpl = gameImpl;
         }

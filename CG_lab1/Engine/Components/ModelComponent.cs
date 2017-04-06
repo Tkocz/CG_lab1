@@ -11,6 +11,7 @@ namespace Manager.Components
         //Holds a model and the data transforms for its meshes
         public Model model;
         public bool hasTransformable;
+        public BasicEffect modelEffect;
         public ModelComponent(string modelName, bool hasTransformable)
         {
             model = Engine.GetInst().Content.Load<Model>(modelName);
