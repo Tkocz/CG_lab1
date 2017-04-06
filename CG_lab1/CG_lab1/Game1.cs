@@ -21,14 +21,9 @@ namespace CG_lab1
         Entity chopper;
         public override void init()
         {
-			var heightMap = Engine.GetInst().addEntity(HeightMap.createComponents(
+			Engine.GetInst().addEntity(HeightMap.createComponents(
 					"US_Canyon",
-					"US_Canyon",
-					new Vector3(5, 5, 5),
-					new Vector3(0, 0, -50),
-					world,
-					world,
-					new Vector3(0.1f, 0.1f, 0.1f)
+					"US_Canyon"
 		   		));
 
             Engine.GetInst().Window.Title = "Get to the Choppaaaaargh!";
@@ -49,9 +44,6 @@ namespace CG_lab1
         }
 
         public override void update(GameTime gameTime)
-        {
-        }
-        public override void draw(GameTime gameTime)
         {
         }
     }

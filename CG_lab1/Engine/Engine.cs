@@ -30,8 +30,9 @@ namespace Manager
         public Engine(GameImpl gameImpl)
         {
             graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferWidth = 2000;
-            graphics.PreferredBackBufferHeight = 2000;
+            graphics.GraphicsProfile = GraphicsProfile.HiDef;
+            graphics.PreferredBackBufferWidth = 1280;
+            graphics.PreferredBackBufferHeight = 720;
             Content.RootDirectory = "Content";
             this.gameImpl = gameImpl;
         }

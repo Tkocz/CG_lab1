@@ -8,7 +8,7 @@ namespace CG_lab1
 {
 	public class HeightMap
 	{
-		public static Component[] createComponents(string heighmap, string heightMapTexture,Vector3 scale, Vector3 position, Matrix rotation, Matrix objectWorld, Vector3 speed)
+		public static Component[] createComponents(string heighmap, string heightMapTexture)
 		{
 			return new Component[]
 			{

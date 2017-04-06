@@ -148,9 +148,9 @@ namespace Manager.Subsystems
 
 
 		public override void draw(GameTime gameTime)
-		{;
+		{
 			CameraComponent camera = null;
-			device.Clear(ClearOptions.Target | ClearOptions.DepthBuffer, Color.Black, 1.0f, 0);
+			device.Clear(ClearOptions.Target | ClearOptions.Target, Color.Black, 1.0f, 0);
 			foreach (var entity in Engine.GetInst().Entities.Values)
 			{
 				var cameraModel = entity.GetComponent<CameraComponent>();
