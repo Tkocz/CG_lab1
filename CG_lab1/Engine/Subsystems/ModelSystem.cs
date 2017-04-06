@@ -73,6 +73,8 @@ namespace Manager.Subsystems
             foreach (var entity in Engine.GetInst().Entities.Values)
             {
                 var modelComponent = entity.GetComponent<ModelComponent>();
+				if (modelComponent == null)
+					continue;
                 if (!modelComponent.hasTransformable)
                     continue;
                 var transformComponent = entity.GetComponent<TransformComponent>();

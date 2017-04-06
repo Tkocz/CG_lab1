@@ -18,7 +18,7 @@ namespace Manager.Subsystems
         private BasicEffect skyEffect;
         //private Matrix world, view, proj;
         private Matrix viewM, projM, skyworldM, worldM;
-        private static float skyscale = 10000f;
+        private static float skyscale = 1000f;
         private float slow = skyscale / 200f;  // step width of movements
         private float rotationX, rotationY, rotationZ;
         private Vector3 nullPos = Vector3.Zero;
@@ -72,7 +72,7 @@ namespace Manager.Subsystems
         }
         public override void draw(GameTime gameTime)
         {
-            graphics.GraphicsDevice.Clear(Color.DarkBlue);
+            //graphics.GraphicsDevice.Clear(Color.DarkBlue);
             skyEffect.World = skyworldM;
             skyEffect.View = viewM;
             skyEffect.Projection = projM;

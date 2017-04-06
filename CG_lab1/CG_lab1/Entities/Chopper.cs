@@ -18,7 +18,6 @@ namespace CG_lab1.Entities
             return new Component[]
             {
                 new CameraComponent(),
-                new HeightmapComponent(),
                 new ModelComponent("Chopper", true),
                 new TransformComponent(scale, position, rotation, objectWorld, speed),
                 new InputComponent()

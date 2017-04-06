@@ -12,9 +12,7 @@ namespace CG_lab1
 		{
 			return new Component[]
 			{
-				new HeightmapComponent(heighmap, heightMapTexture),
-				new TransformComponent(scale, position, rotation, objectWorld, speed),
-				new CameraComponent()
+				new HeightmapComponent(heighmap, heightMapTexture)
 			};
 
 		}

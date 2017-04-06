@@ -149,30 +149,33 @@ namespace Manager.Subsystems
 
 		public override void draw(GameTime gameTime)
 		{;
-			device.Clear(ClearOptions.Target | ClearOptions.DepthBuffer, Color.CornflowerBlue, 1.0f, 0);
-
+			CameraComponent camera = null;
+			device.Clear(ClearOptions.Target | ClearOptions.DepthBuffer, Color.Black, 1.0f, 0);
+			foreach (var entity in Engine.GetInst().Entities.Values)
+			{
+				var cameraModel = entity.GetComponent<CameraComponent>();
+				if (cameraModel != null)
+					camera = cameraModel;
+			}
 			foreach (var entity in Engine.GetInst().Entities.Values)
 			{
 				var heightMapComponent = entity.GetComponent<HeightmapComponent>();
 				if (heightMapComponent == null)
 					continue;
-				var transfromComponent = entity.GetComponent<TransformComponent>();
-				var cameraModel = entity.GetComponent<CameraComponent>();
-				var scale = transfromComponent.scale;
-				var rotation = transfromComponent.rotation;
-				var objectWorld = transfromComponent.objectWorld;
+				
 
 				device.SetVertexBuffer(heightMapComponent.vertexBuffer);
 				device.Indices = heightMapComponent.indexBuffer;
 				RasterizerState rs = new RasterizerState();
+				rs.FillMode = FillMode.Solid;
 				device.RasterizerState = rs;
 				var effect = heightMapComponent.basicEffect;
 				var terrainWidth = heightMapComponent.terrainWidth;
 				var terrainHeight = heightMapComponent.terrainHeight;
-				objectWorld = Matrix.CreateTranslation(-terrainWidth / 2.0f, 0, terrainHeight / 2.0f);
+				var objectWorld = Matrix.CreateTranslation(-terrainWidth / 2.0f, 0, terrainHeight / 2.0f);
 				effect.World = objectWorld;
-				effect.View = cameraModel.view;
-                effect.Projection = cameraModel.projection;
+				effect.View = camera.view;
+				effect.Projection = camera.projection;
 
 				effect.EnableDefaultLighting();
 				effect.LightingEnabled = true;
