@@ -37,7 +37,7 @@ namespace Manager.Subsystems
             Vector3 camup = new Vector3(0, 1, 0);
             camup = Vector3.Transform(camup, Matrix.CreateFromQuaternion(cameraRotation));
             camera.view = Matrix.CreateLookAt(campos, transform.position, camup);
-            camera.projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, Engine.GetInst().GraphicsDevice.Viewport.AspectRatio, 0.2f, 500.0f);
+            camera.projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, Engine.GetInst().GraphicsDevice.Viewport.AspectRatio, 1f, 1000.0f);
 
             //transform.position = campos;
             camera.up = camup;

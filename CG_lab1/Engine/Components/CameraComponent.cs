@@ -13,8 +13,8 @@ namespace Manager.Components
         public CameraComponent()
         {
             up = Vector3.Up;
-            view = Matrix.CreateLookAt(new Vector3(60, 500, -100), new Vector3(0, 0, 0), up);
-            projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver2, Engine.GetInst().GraphicsDevice.Viewport.AspectRatio, 0.1f, 1000f);
+            view = Matrix.CreateLookAt(new Vector3(60, 5000, -100), new Vector3(0, 0, 0), up);
+            projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver2, Engine.GetInst().GraphicsDevice.Viewport.AspectRatio, 0.1f, 10000f);
         }
     }
 }
