@@ -12,11 +12,9 @@ namespace Manager.Subsystems
 {
     public class HeightmapSystem : Core
 	{
-		Matrix world;
-		public HeightmapSystem(Matrix world)
+		public HeightmapSystem()
 		{
 			device = Engine.GetInst().GraphicsDevice;
-			this.world = world;
 			LoadHeightMap();
 
 		}
@@ -76,7 +74,7 @@ namespace Manager.Subsystems
 				for (int y = 0; y < component.terrainHeight; y++)
 				{
 					component.vertices[x + y * component.terrainWidth].Position = new Vector3(x, component.heightMapData[x, y], -y);
-					component.vertices[x + y * component.terrainWidth].TextureCoordinate = new Vector2(x, y);
+					component.vertices[x + y * component.terrainWidth].TextureCoordinate = new Vector2(x / component.terrainWidth, y / component.terrainWidth);
 				}
 			}
 		}
@@ -162,8 +160,6 @@ namespace Manager.Subsystems
 				var heightMapComponent = entity.GetComponent<HeightmapComponent>();
 				if (heightMapComponent == null)
 					continue;
-				
-
 				device.SetVertexBuffer(heightMapComponent.vertexBuffer);
 				device.Indices = heightMapComponent.indexBuffer;
 				RasterizerState rs = new RasterizerState();
@@ -173,7 +169,7 @@ namespace Manager.Subsystems
 				var terrainWidth = heightMapComponent.terrainWidth;
 				var terrainHeight = heightMapComponent.terrainHeight;
 				var objectWorld = Matrix.CreateTranslation(-terrainWidth / 2.0f, 0, terrainHeight / 2.0f);
-				effect.World = objectWorld;
+				effect.World = Matrix.Identity * objectWorld;
 				effect.View = camera.view;
 				effect.Projection = camera.projection;
 
@@ -195,8 +191,6 @@ namespace Manager.Subsystems
 				foreach (EffectPass pass in effect.CurrentTechnique.Passes)
 				{
 					pass.Apply();
-					device.Indices = heightMapComponent.indexBuffer;
-					device.SetVertexBuffer(heightMapComponent.vertexBuffer);
 					device.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, heightMapComponent.vertices.Length, 0, heightMapComponent.indices.Length / 3);
 				}
 			}

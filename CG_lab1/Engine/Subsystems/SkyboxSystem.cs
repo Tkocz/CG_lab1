@@ -20,7 +20,6 @@ namespace Manager.Subsystems
         private Matrix viewM, projM, skyworldM, world;
         private static float skyscale = 1000;
         private float slow = skyscale / 200f;  // step width of movements
-        private float rotationX, rotationY, rotationZ;
         private Vector3 nullPos = Vector3.Zero;
         public SkyboxSystem(Matrix world)
         {

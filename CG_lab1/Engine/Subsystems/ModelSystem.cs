@@ -32,16 +32,13 @@ namespace Manager.Subsystems
 
                 if (cameraComponent != null)
                 {
-                    var scale = transformComponent.scale;
-                    var rotation = transformComponent.rotation;
                     var objectWorld = transformComponent.objectWorld;
 
                     foreach (ModelMesh modelMesh in modelComponent.model.Meshes)
                     {
                         //System.Console.WriteLine(modelMesh.Name);
                         foreach (BasicEffect effect in modelMesh.Effects)
-                        {
-                            objectWorld = Matrix.CreateScale(scale) * rotation * Matrix.CreateTranslation(transformComponent.position);
+						{
                             effect.World = modelMesh.ParentBone.Transform * objectWorld * world;
                             effect.View = cameraComponent.view;
                             effect.Projection = cameraComponent.projection;
@@ -52,7 +49,7 @@ namespace Manager.Subsystems
                             foreach (EffectPass p in effect.CurrentTechnique.Passes)
                             {
                                 p.Apply();
-                                modelMesh.Draw();
+								modelMesh.Draw();
                             }
                         }
                     }
@@ -79,9 +76,6 @@ namespace Manager.Subsystems
                     continue;
                 var transformComponent = entity.GetComponent<TransformComponent>();
                 var cameraComponent = entity.GetComponent<CameraComponent>();
-                var scale = transformComponent.scale;
-                var rotation = transformComponent.rotation;
-                var objectWorld = transformComponent.objectWorld;
                 var elapsedGameTime = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
                 foreach (ModelBone modelBone in modelComponent.model.Bones)
@@ -91,7 +85,7 @@ namespace Manager.Subsystems
                         Matrix MainRotorWorldMatrix;
                         MainRotorWorldMatrix = modelBone.Transform;
                         MainRotorWorldMatrix *= Matrix.CreateTranslation(-modelBone.Transform.Translation); 
-                        MainRotorWorldMatrix *= Matrix.CreateRotationY(elapsedGameTime * 0.01f);
+                        MainRotorWorldMatrix *= Matrix.CreateRotationY(elapsedGameTime * 1f);
                         MainRotorWorldMatrix *= Matrix.CreateTranslation(modelBone.Transform.Translation);  
                         modelBone.Transform = MainRotorWorldMatrix;
                     }
@@ -101,7 +95,7 @@ namespace Manager.Subsystems
                         BackRotorWorldMatrix = modelBone.Transform;
                         BackRotorWorldMatrix = modelBone.Transform;
                         BackRotorWorldMatrix *= Matrix.CreateTranslation(-modelBone.Transform.Translation);
-                        BackRotorWorldMatrix *= Matrix.CreateRotationX(elapsedGameTime * 0.01f);
+                        BackRotorWorldMatrix *= Matrix.CreateRotationX(elapsedGameTime * 2f);
                         BackRotorWorldMatrix *= Matrix.CreateTranslation(modelBone.Transform.Translation);        
                         modelBone.Transform = BackRotorWorldMatrix;
                     }

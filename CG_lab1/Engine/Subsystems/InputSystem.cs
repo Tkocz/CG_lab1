@@ -38,7 +38,8 @@ namespace Manager.Subsystems
 
                 // Left (Negative X)
                 if (Keyboard.GetState().IsKeyDown(userInput.a))
-                    tC.position.X = tC.speed.X * elapsedGameTime;
+
+                    tC.position.X += tC.speed.X * elapsedGameTime;
 
                 // Right (Positive X)
                 if (Keyboard.GetState().IsKeyDown(userInput.d))
@@ -46,11 +47,12 @@ namespace Manager.Subsystems
 
                 // Backward (Positive Z)
                 if (Keyboard.GetState().IsKeyDown(userInput.w))
-                    tC.position.Z -= tC.speed.Z * elapsedGameTime;
+
+					tC.position += tC.speed.Z * elapsedGameTime * tC.objectWorld.Forward;
 
                 // Forward (Negative Z)
                 if (Keyboard.GetState().IsKeyDown(userInput.s))
-                    tC.position.Z += tC.speed.Z * elapsedGameTime;
+                    tC.position -= tC.speed.Z * elapsedGameTime * tC.objectWorld.Forward;
 
                 // Up (Positive Y)
                 if (Keyboard.GetState().IsKeyDown(userInput.space))
@@ -69,29 +71,29 @@ namespace Manager.Subsystems
 
                 // Clockwise around positive Y-axis
                 if (Keyboard.GetState().IsKeyDown(userInput.left))
-                    axis = new Vector3(0, 1f, 0);
+                    axis = new Vector3(0, -1f, 0);
 
                 // Clockwise around negative Y-axis
                 if (Keyboard.GetState().IsKeyDown(userInput.right))
-                    axis = new Vector3(0, -1f, 0);
+                    axis = new Vector3(0, 1f, 0);
 
                 // Clockwise around positive X-axis
                 if (Keyboard.GetState().IsKeyDown(userInput.up))
-                    axis = new Vector3(1f, 0, 0);
+					axis = new Vector3(1f, 0, 0);
 
                 // Clockwise around negative X-axis
                 if (Keyboard.GetState().IsKeyDown(userInput.down))
                     axis = new Vector3(-1f, 0, 0);
 
                 // Clockwise around positive Z-axis
-                if (Keyboard.GetState().IsKeyDown(userInput.c))
+                if (Keyboard.GetState().IsKeyDown(userInput.q))
                     axis = new Vector3(0, 0, 1f);
 
                 // Clockwise around negative Z-axis
-                if (Keyboard.GetState().IsKeyDown(userInput.z))
+                if (Keyboard.GetState().IsKeyDown(userInput.e))
                     axis = new Vector3(0, 0, -1f);
 
-                Quaternion rot = Quaternion.CreateFromAxisAngle(axis, angle);
+				Quaternion rot = Quaternion.CreateFromAxisAngle(axis, angle);
                 rot.Normalize();
                 tC.rotation *= Matrix.CreateFromQuaternion(rot);
 

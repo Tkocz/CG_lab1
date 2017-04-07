@@ -27,7 +27,7 @@ namespace CG_lab1
 		   		));
 
             Engine.GetInst().Window.Title = "Get to the Choppaaaaargh!";
-			Engine.GetInst().Subsystems.Add(new HeightmapSystem(world));
+			Engine.GetInst().Subsystems.Add(new HeightmapSystem());
             Engine.GetInst().Subsystems.Add(new SkyboxSystem(world));
             Engine.GetInst().Subsystems.Add(new CameraSystem());
             Engine.GetInst().Subsystems.Add(new ModelSystem(world));
