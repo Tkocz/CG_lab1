@@ -10,11 +10,13 @@ namespace Manager.Components
         public Matrix view;
         public Matrix projection;
         public Vector3 up;
+		public Vector3 offset;
         public CameraComponent()
         {
             up = Vector3.Up;
-            view = Matrix.CreateLookAt(new Vector3(60, 5000, -100), new Vector3(0, 0, 0), up);
-            projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver2, Engine.GetInst().GraphicsDevice.Viewport.AspectRatio, 0.1f, 10000f);
+			offset = new Vector3(0, 50, 50);
+            view = Matrix.CreateLookAt(new Vector3(0, 0, 0), new Vector3(0, 0, 0), up);
+            projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, Engine.GetInst().GraphicsDevice.Viewport.AspectRatio, 1f, 1000f);
         }
     }
 }

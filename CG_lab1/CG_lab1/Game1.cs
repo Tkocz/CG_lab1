@@ -23,7 +23,7 @@ namespace CG_lab1
         {
 			Engine.GetInst().addEntity(HeightMap.createComponents(
 					"US_Canyon",
-					"US_Canyon"
+					"mudcrack"
 		   		));
 
             Engine.GetInst().Window.Title = "Get to the Choppaaaaargh!";
@@ -38,7 +38,7 @@ namespace CG_lab1
                 "Chopper",
                 true,
                 new Vector3(0.5f, 0.5f, 0.5f), 
-                new Vector3(0, 300, -50),
+                new Vector3(0f, 300f, 0f),
                 world, 
                 world,
                 new Vector3(0.1f, 0.1f, 0.1f)

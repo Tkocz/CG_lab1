@@ -74,7 +74,7 @@ namespace Manager.Subsystems
 				for (int y = 0; y < component.terrainHeight; y++)
 				{
 					component.vertices[x + y * component.terrainWidth].Position = new Vector3(x, component.heightMapData[x, y], -y);
-					component.vertices[x + y * component.terrainWidth].TextureCoordinate = new Vector2(x / component.terrainWidth, y / component.terrainWidth);
+					component.vertices[x + y * component.terrainWidth].TextureCoordinate = new Vector2(x / 22.5f, y / 22.5f);
 				}
 			}
 		}
@@ -180,12 +180,15 @@ namespace Manager.Subsystems
 				effect.DirectionalLight0.Direction = new Vector3(-0.5f, 1.5f, 3.5f);
 				effect.DirectionalLight0.SpecularColor = new Vector3(-0.1f, -0.1f, -0.1f);
 				effect.DirectionalLight0.Enabled = true;
-
+				effect.FogEnabled = true;
+				effect.FogStart = 300;
+				effect.FogEnd = 400;
+				effect.FogColor = Color.DimGray.ToVector3();
 				effect.AmbientLightColor = new Vector3(0.1f, 0.1f, 0.1f);
 				effect.PreferPerPixelLighting = true;
 				effect.SpecularPower = 100;
 				effect.EmissiveColor = new Vector3(0.1f, 0.1f, 0.1f);
-				effect.DiffuseColor = Color.SandyBrown.ToVector3();
+				//effect.DiffuseColor = Color.SandyBrown.ToVector3();
 				effect.TextureEnabled = true;
 				effect.Texture = heightMapComponent.heightMapTexture;
 				foreach (EffectPass pass in effect.CurrentTechnique.Passes)
