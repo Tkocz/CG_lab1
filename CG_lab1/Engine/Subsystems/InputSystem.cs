@@ -38,19 +38,19 @@ namespace Manager.Subsystems
 
                 // Left (Negative X)
                 if (Keyboard.GetState().IsKeyDown(userInput.a))
-                    tC.position.X -= tC.speed.X * elapsedGameTime;
+                    tC.position.X = tC.speed.X * elapsedGameTime;
 
                 // Right (Positive X)
                 if (Keyboard.GetState().IsKeyDown(userInput.d))
-                    tC.position.X += tC.speed.X * elapsedGameTime;
+                    tC.position.X -= tC.speed.X * elapsedGameTime;
 
                 // Backward (Positive Z)
                 if (Keyboard.GetState().IsKeyDown(userInput.w))
-                    tC.position.Z += tC.speed.Z * elapsedGameTime;
+                    tC.position.Z -= tC.speed.Z * elapsedGameTime;
 
                 // Forward (Negative Z)
                 if (Keyboard.GetState().IsKeyDown(userInput.s))
-                    tC.position.Z -= tC.speed.Z * elapsedGameTime;
+                    tC.position.Z += tC.speed.Z * elapsedGameTime;
 
                 // Up (Positive Y)
                 if (Keyboard.GetState().IsKeyDown(userInput.space))

@@ -29,8 +29,9 @@ namespace Manager.Subsystems
                 Quaternion objectRotation = Quaternion.Identity;
                 cameraRotation = Quaternion.Lerp(cameraRotation, objectRotation, 0.1f);
 
-            Vector3 campos = new Vector3(0, 20f, -60f);
-            campos = Vector3.Transform(campos, Matrix.CreateFromQuaternion(cameraRotation));
+            Vector3 campos = new Vector3(0, 0, 60f);
+            //campos = Vector3.Transform(campos, Matrix.CreateFromQuaternion(cameraRotation));
+            campos = Vector3.Transform(campos, transform.rotation);
             campos += transform.position;
 
             Vector3 camup = new Vector3(0, 1, 0);
@@ -38,7 +39,7 @@ namespace Manager.Subsystems
             camera.view = Matrix.CreateLookAt(campos, transform.position, camup);
             camera.projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, Engine.GetInst().GraphicsDevice.Viewport.AspectRatio, 0.2f, 500.0f);
 
-            transform.position = campos;
+            //transform.position = campos;
             camera.up = camup;
         }
     }
