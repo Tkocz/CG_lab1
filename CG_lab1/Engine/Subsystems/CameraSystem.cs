@@ -36,7 +36,6 @@ namespace Manager.Subsystems
 
 			camera.view = Matrix.CreateLookAt(cameraPosition, transform.position, cameraUp);
 
-			//transform.position = campos;
 			camera.cameraRotation = cameraRotation;
             camera.up = cameraUp;
         }

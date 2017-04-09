@@ -29,14 +29,12 @@ namespace Manager.Subsystems
                 var transformComponent = entity.GetComponent<TransformComponent>();
                 var cameraComponent = entity.GetComponent<CameraComponent>();
 
-
                 if (cameraComponent != null)
                 {
                     var objectWorld = transformComponent.objectWorld;
 
                     foreach (ModelMesh modelMesh in modelComponent.model.Meshes)
                     {
-                        //System.Console.WriteLine(modelMesh.Name);
                         foreach (BasicEffect effect in modelMesh.Effects)
 						{
                             effect.World = modelMesh.ParentBone.Transform * objectWorld * world;
@@ -58,15 +56,6 @@ namespace Manager.Subsystems
                         }
                     }
                 }
-                else
-                {
-                    //skyworldM = Matrix.CreateScale(skyscale, skyscale, skyscale);
-                    //projM = Matrix.CreatePerspectiveFieldOfView(MathHelper.Pi / 3, 1f, 1f, 10f * skyscale);
-                    //modelComponent.modelEffect.World = skyworldM;
-                    //modelComponent.modelEffect.View = Matrix.CreateLookAt(new Vector3(0, 0, 20), new Vector3(0, 0, 0), Vector3.Up);
-                    //modelComponent.modelEffect.Projection = projM;
-                    //modelComponent.model.Meshes[0].Draw();
-                }
             }
         }
         public override void update(GameTime gameTime)
@@ -84,7 +73,7 @@ namespace Manager.Subsystems
 
                 foreach (ModelBone modelBone in modelComponent.model.Bones)
                 {
-                    if(modelBone.Name == "Main_Rotor")
+                    if(modelBone.Name == "Main_Rotor") //Non-generic solution, but it works ¯\_(ツ)_/
                     {
                         Matrix MainRotorWorldMatrix;
                         MainRotorWorldMatrix = modelBone.Transform;
@@ -93,7 +82,7 @@ namespace Manager.Subsystems
                         MainRotorWorldMatrix *= Matrix.CreateTranslation(modelBone.Transform.Translation);  
                         modelBone.Transform = MainRotorWorldMatrix;
                     }
-                    if (modelBone.Name == "Back_Rotor")
+                    if (modelBone.Name == "Back_Rotor") //Non-generic solution, but it works ¯\_(ツ)_/
                     {
                         Matrix BackRotorWorldMatrix;
                         BackRotorWorldMatrix = modelBone.Transform;

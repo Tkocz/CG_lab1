@@ -6,6 +6,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Manager
 {
+    /// <summary>
+    /// A collection of core classes for handling the engine
+    /// </summary>
     public abstract class Core
     {
         public virtual void update(GameTime gameTime) { }

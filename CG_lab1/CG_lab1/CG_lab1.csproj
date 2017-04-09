@@ -115,6 +115,7 @@
     <Content Include="bin\DesktopGL\AnyCPU\Debug\x64\soft_oal.dll" />
     <Content Include="bin\DesktopGL\AnyCPU\Debug\x86\SDL2.dll" />
     <Content Include="bin\DesktopGL\AnyCPU\Debug\x86\soft_oal.dll" />
+    <Content Include="Content\mudcrack.jpg" />
     <Content Include="Content\skybox_texture.jpg" />
     <Content Include="Content\US_Canyon.png" />
     <Content Include="Resources\US_Canyon.png" />

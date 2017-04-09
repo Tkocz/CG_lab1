@@ -11,6 +11,9 @@ using static Manager.Core;
 
 namespace CG_lab1.Entities
 {
+    /// <summary>
+    /// A predefinition of the components needed for the main entity, merely a convenient shortcut
+    /// </summary>
     public class Chopper
     {
         public static Component[] createComponents(String name,bool hasTransformables, Vector3 scale, Vector3 position, Matrix rotation, Matrix objectWorld, Vector3 speed)

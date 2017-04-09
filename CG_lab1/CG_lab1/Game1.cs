@@ -42,18 +42,12 @@ namespace CG_lab1
                 world, 
                 world,
                 new Vector3(0.1f, 0.1f, 0.1f)
-                ));/*
-            Engine.GetInst().addEntity(new Component[]
-            {
-                new CameraComponent(),
-                new ModelComponent("Mi28/Mi28", true),
-                new TransformComponent(new Vector3(3, 3, 3), new Vector3(0, 300, -50), world, world, new Vector3(0.1f, 0.1f, 0.1f)),
-                new InputComponent()
-            });*/
+                ));
         }
 
         public override void update(GameTime gameTime)
         {
+
         }
     }
 }

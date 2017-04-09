@@ -9,35 +9,39 @@ using static Manager.Core;
 
 namespace Manager.Components
 {
+    /// <summary>
+    /// Component-values, should be made with get-set instead, but, time...
+    /// Should also have a constructor for choosing input, if multiplayer or AI
+    /// </summary>
     public class InputComponent : Component
     {
         public Keys add, sub, a, d, w, s, space, lShift, left, right, up, down, q, e, r;
 
         public InputComponent()
         {
-            add = Keys.Add;             // Enlarge (uniformly)
-            sub = Keys.Subtract;        // Ensmallen (uniformly)
+            add = Keys.Add;             
+            sub = Keys.Subtract;        
 
             // --------
             // Translate
             // --------
-            a = Keys.A;                 // Left (Negative X) 
-            d = Keys.D;                 // Right (Positive X)                
-            w = Keys.W;                 // Backward (Positive Z)                
-            s = Keys.S;                 // Forward (Negative Z)
-            space = Keys.Space;         // Up (Positive Y)
-            lShift = Keys.LeftShift;    // Down (Negative Y)
+            a = Keys.A;                 
+            d = Keys.D;                  
+            w = Keys.W;                     
+            s = Keys.S;                 
+            space = Keys.Space;         
+            lShift = Keys.LeftShift;    
 
             // ------
             // Rotate
             // ------
-            left = Keys.Left;           // Clockwise around positive Y-axis                
-            right = Keys.Right;         // Clockwise around negative Y-axis                
-            up = Keys.Up;               // Clockwise around positive X-axis                
-            down = Keys.Down;           // Clockwise around negative X-axis                
-            e = Keys.E;                 // Clockwise around positive Z-axis                
-            q = Keys.Q;                 // Clockwise around negative Z-axis 
-            r = Keys.R;                 // Reset to original (zero) rotation
+            left = Keys.Left;                          
+            right = Keys.Right;                        
+            up = Keys.Up;                              
+            down = Keys.Down;                          
+            e = Keys.E;                                
+            q = Keys.Q;                 
+            r = Keys.R;                 
         }
     }
 }

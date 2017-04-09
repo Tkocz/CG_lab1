@@ -47,15 +47,8 @@ namespace Manager
             return inst;
         }
 
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
             gameImpl.init();
             base.Initialize();
         }
@@ -67,9 +60,7 @@ namespace Manager
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            //spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            // TODO: use this.Content to load your game content here
+            //spriteBatch = new SpriteBatch(GraphicsDevice); // Not needed for this project
         }
 
         /// <summary>
@@ -91,8 +82,6 @@ namespace Manager
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
-
             foreach (var subsystem in Subsystems)
             {
                 subsystem.update(gameTime);
@@ -108,8 +97,6 @@ namespace Manager
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // TODO: Add your drawing code here
 
             foreach (var subsystem in Subsystems)
             {

@@ -6,6 +6,9 @@ using static Manager.Core;
 
 namespace Manager.Components
 {
+    /// <summary>
+    /// Component-values, should be made with get-set instead, but, time...
+    /// </summary>
     public class TransformComponent : Component
     {
         //Holds data such as position, rotation and scaling

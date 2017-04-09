@@ -5,6 +5,9 @@ using static Manager.Core;
 
 namespace Manager.Components
 {
+    /// <summary>
+    /// Component-values, should be made with get-set instead, but, time...
+    /// </summary>
     public class CameraComponent : Component
     {
         public Matrix view;

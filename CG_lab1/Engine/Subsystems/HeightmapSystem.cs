@@ -16,7 +16,6 @@ namespace Manager.Subsystems
 		{
 			device = Engine.GetInst().GraphicsDevice;
 			LoadHeightMap();
-
 		}
 		GraphicsDevice device;
 		public void LoadHeightMap()
@@ -126,7 +125,6 @@ namespace Manager.Subsystems
 			for (int i = 0; i < component.vertices.Length; i++)
 				component.vertices[i].Normal.Normalize();
 		}
-
 		private void LoadHeightMapData(Texture2D heightMap, HeightmapComponent component)
 		{
 			component.terrainWidth = heightMap.Width;
@@ -140,11 +138,8 @@ namespace Manager.Subsystems
 				for (int y = 0; y < component.terrainHeight; y++)
 					component.heightMapData[x, y] = heightMapColors[x + y * component.terrainWidth].R;
 		}
-
-
+        
         //Creates and renders all the HeightmapComponents.
-
-
 		public override void draw(GameTime gameTime)
 		{
 			CameraComponent camera = null;

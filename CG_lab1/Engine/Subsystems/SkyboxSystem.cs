@@ -14,9 +14,8 @@ namespace Manager.Subsystems
     public class SkyboxSystem : Core
     {
         private GraphicsDeviceManager graphics;
-        private Model skyModel;//, shipModel;
+        private Model skyModel;
         private BasicEffect skyEffect;
-        //private Matrix world, view, proj;
         private Matrix viewM, projM, skyworldM, world;
         private static float skyscale = 1000;
         private float slow = skyscale / 200f;  // step width of movements
