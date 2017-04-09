@@ -46,6 +46,10 @@ namespace Manager.Subsystems
                             effect.EnableDefaultLighting();
                             effect.LightingEnabled = true;
 
+							effect.DirectionalLight0.DiffuseColor = new Vector3(1f, 1f, 1f);
+							effect.DirectionalLight0.Direction = new Vector3(-0.5f, 1f, -3.5f);
+							effect.DirectionalLight0.SpecularColor = new Vector3(-0.1f, -0.1f, -0.1f);
+
                             foreach (EffectPass p in effect.CurrentTechnique.Passes)
                             {
                                 p.Apply();
@@ -56,12 +60,12 @@ namespace Manager.Subsystems
                 }
                 else
                 {
-                    skyworldM = Matrix.CreateScale(skyscale, skyscale, skyscale);
-                    projM = Matrix.CreatePerspectiveFieldOfView(MathHelper.Pi / 3, 1f, 1f, 10f * skyscale);
-                    modelComponent.modelEffect.World = skyworldM;
-                    modelComponent.modelEffect.View = Matrix.CreateLookAt(new Vector3(0, 0, 20), new Vector3(0, 0, 0), Vector3.Up);
-                    modelComponent.modelEffect.Projection = projM;
-                    modelComponent.model.Meshes[0].Draw();
+                    //skyworldM = Matrix.CreateScale(skyscale, skyscale, skyscale);
+                    //projM = Matrix.CreatePerspectiveFieldOfView(MathHelper.Pi / 3, 1f, 1f, 10f * skyscale);
+                    //modelComponent.modelEffect.World = skyworldM;
+                    //modelComponent.modelEffect.View = Matrix.CreateLookAt(new Vector3(0, 0, 20), new Vector3(0, 0, 0), Vector3.Up);
+                    //modelComponent.modelEffect.Projection = projM;
+                    //modelComponent.model.Meshes[0].Draw();
                 }
             }
         }
@@ -85,14 +89,13 @@ namespace Manager.Subsystems
                         Matrix MainRotorWorldMatrix;
                         MainRotorWorldMatrix = modelBone.Transform;
                         MainRotorWorldMatrix *= Matrix.CreateTranslation(-modelBone.Transform.Translation); 
-                        MainRotorWorldMatrix *= Matrix.CreateRotationY(elapsedGameTime * 1f);
+                        MainRotorWorldMatrix *= Matrix.CreateRotationY(elapsedGameTime * 0.5f);
                         MainRotorWorldMatrix *= Matrix.CreateTranslation(modelBone.Transform.Translation);  
                         modelBone.Transform = MainRotorWorldMatrix;
                     }
                     if (modelBone.Name == "Back_Rotor")
                     {
                         Matrix BackRotorWorldMatrix;
-                        BackRotorWorldMatrix = modelBone.Transform;
                         BackRotorWorldMatrix = modelBone.Transform;
                         BackRotorWorldMatrix *= Matrix.CreateTranslation(-modelBone.Transform.Translation);
                         BackRotorWorldMatrix *= Matrix.CreateRotationX(elapsedGameTime * 2f);

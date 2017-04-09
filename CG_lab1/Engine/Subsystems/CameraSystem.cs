@@ -25,17 +25,20 @@ namespace Manager.Subsystems
                     transform = entity.GetComponent<TransformComponent>();
                 }
             }
-            Quaternion cameraRotation = Quaternion.Identity;
-                Quaternion objectRotation = Quaternion.Identity;
-                cameraRotation = Quaternion.Lerp(cameraRotation, objectRotation, 0.1f);
 
-			Vector3 transformedReference = Vector3.Transform(camera.offset, transform.rotation);
-			Vector3 cameraPosition = transformedReference + transform.position;
+			var cameraRotation = Quaternion.Lerp(camera.cameraRotation, Quaternion.CreateFromRotationMatrix(transform.rotation), 0.1f);
 
-            camera.view = Matrix.CreateLookAt(cameraPosition, transform.position, Vector3.Up);
-   
-            //transform.position = campos;
-            camera.up = Vector3.Transform(Vector3.Up, Matrix.CreateFromQuaternion(cameraRotation));;
+			Vector3 cameraPosition = Vector3.Transform(camera.offset, transform.rotation);
+			cameraPosition += transform.position;
+
+			Vector3 cameraUp = new Vector3(0, 1, 0);
+			cameraUp = Vector3.Transform(cameraUp, transform.rotation);
+
+			camera.view = Matrix.CreateLookAt(cameraPosition, transform.position, cameraUp);
+
+			//transform.position = campos;
+			camera.cameraRotation = cameraRotation;
+            camera.up = cameraUp;
         }
     }
 }

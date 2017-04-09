@@ -177,7 +177,7 @@ namespace Manager.Subsystems
 				effect.LightingEnabled = true;
 
 				effect.DirectionalLight0.DiffuseColor = new Vector3(0.5f, 0.5f, 0.5f);
-				effect.DirectionalLight0.Direction = new Vector3(-0.5f, 1.5f, 3.5f);
+				effect.DirectionalLight0.Direction = new Vector3(-0.5f, 1f, -3.5f);
 				effect.DirectionalLight0.SpecularColor = new Vector3(-0.1f, -0.1f, -0.1f);
 				effect.DirectionalLight0.Enabled = true;
 				effect.FogEnabled = true;
@@ -188,7 +188,6 @@ namespace Manager.Subsystems
 				effect.PreferPerPixelLighting = true;
 				effect.SpecularPower = 100;
 				effect.EmissiveColor = new Vector3(0.1f, 0.1f, 0.1f);
-				//effect.DiffuseColor = Color.SandyBrown.ToVector3();
 				effect.TextureEnabled = true;
 				effect.Texture = heightMapComponent.heightMapTexture;
 				foreach (EffectPass pass in effect.CurrentTechnique.Passes)
