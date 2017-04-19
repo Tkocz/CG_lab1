@@ -39,7 +39,7 @@ namespace Manager.Subsystems
                 var view = transformComponent.scale;
 
                 var scale = transformComponent.scale;
-                var rotation = transformComponent.rotation;
+                var rotation = transformComponent.orientation;
                 var objectWorld = transformComponent.objectWorld;
                 var elapsedGameTime = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 

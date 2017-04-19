@@ -48,32 +48,58 @@ namespace Manager.Subsystems
 
                 Vector3 axis = new Vector3(0, 0, 0);
                 float angle = -elapsedGameTime * 0.001f;
-                
+                tC.orientation = Quaternion.Identity;
                 if (Keyboard.GetState().IsKeyDown(userInput.left))
-                    axis = new Vector3(0, -1f, 0);
-                
-                if (Keyboard.GetState().IsKeyDown(userInput.right))
-                    axis = new Vector3(0, 1f, 0);
-                
-                if (Keyboard.GetState().IsKeyDown(userInput.up))
-					axis = new Vector3(1f, 0, 0);
-                
-                if (Keyboard.GetState().IsKeyDown(userInput.down))
-                    axis = new Vector3(-1f, 0, 0);
-                
-				if (Keyboard.GetState().IsKeyDown(userInput.q))
-					axis = new Vector3(0, 0, 1f);
-                
-                if (Keyboard.GetState().IsKeyDown(userInput.e))
-                    axis = new Vector3(0, 0, -1f);
+                {
+                    //axis = new Vector3(0, -1f, 0);
+                    tC.prevyaw = tC.yaw;
+                    tC.yaw += 0.1f;
+                }
 
-				Quaternion rot = Quaternion.CreateFromAxisAngle(axis, angle);
-                rot.Normalize();
-				tC.rotation *= Matrix.CreateFromQuaternion(rot);
+                if (Keyboard.GetState().IsKeyDown(userInput.right))
+                {
+                    //axis = new Vector3(0, 1f, 0);
+                    tC.prevyaw = tC.yaw;
+                    tC.yaw -= 0.1f;
+                }
+
+                if (Keyboard.GetState().IsKeyDown(userInput.up))
+                {
+                    //axis = new Vector3(1f, 0, 0);
+                    tC.prevpitch = tC.pitch;
+                    tC.pitch += 0.1f;
+                }
+
+
+                if (Keyboard.GetState().IsKeyDown(userInput.down))
+                {
+                    tC.prevpitch = tC.pitch;
+                    tC.pitch -= 0.1f;
+                }
+
+                if (Keyboard.GetState().IsKeyDown(userInput.q))
+                {
+                    tC.prevroll = tC.roll;
+                    tC.roll += 0.1f;
+                }
+
+                if (Keyboard.GetState().IsKeyDown(userInput.e))
+                {
+                    tC.prevroll = tC.roll;
+                    tC.roll -= 0.1f;
+                }
+
+                //Quaternion rot = Quaternion.CreateFromAxisAngle(axis, angle);
+                Matrix.CreateFromAxisAngle(Vector3.Up, tC.pitch);
+
+                var additionalRoation = Quaternion.CreateFromAxisAngle(Vector3.Up, tC.yaw) * Quaternion.CreateFromAxisAngle(Vector3.Right, tC.pitch) * Quaternion.CreateFromAxisAngle(Vector3.Forward, tC.roll);
+                additionalRoation.Normalize();
+                //rot.Normalize();
+                tC.orientation *= additionalRoation;
 
                 // Reset to original (zero) rotation
                 if (Keyboard.GetState().IsKeyDown(userInput.r))
-                    tC.rotation = Matrix.Identity;
+                    tC.orientation = Quaternion.Identity;
             }
         }
     }

@@ -39,7 +39,7 @@ namespace CG_lab1
                 true,
                 new Vector3(0.5f, 0.5f, 0.5f), 
                 new Vector3(0f, 300f, 0f),
-                world, 
+                Quaternion.Identity, 
                 world,
                 new Vector3(0.1f, 0.1f, 0.1f)
                 ));

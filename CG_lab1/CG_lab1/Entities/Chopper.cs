@@ -16,13 +16,13 @@ namespace CG_lab1.Entities
     /// </summary>
     public class Chopper
     {
-        public static Component[] createComponents(String name,bool hasTransformables, Vector3 scale, Vector3 position, Matrix rotation, Matrix objectWorld, Vector3 speed)
+        public static Component[] createComponents(String name,bool hasTransformables, Vector3 scale, Vector3 position, Quaternion orientation, Matrix objectWorld, Vector3 speed)
         {
             return new Component[]
             {
                 new CameraComponent(),
                 new ModelComponent(name, hasTransformables),
-                new TransformComponent(scale, position, rotation, objectWorld, speed),
+                new TransformComponent(scale, position, orientation, objectWorld, speed),
                 new InputComponent()
             };
         }
