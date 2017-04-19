@@ -17,9 +17,6 @@ namespace Manager.Components
         public Vector3 position;
         public Quaternion orientation;
         public Matrix objectWorld;
-        public float yaw, pitch, roll;
-        public float prevyaw, prevpitch, prevroll = 0f;
-
 
         public TransformComponent(Vector3 scale, Vector3 position, Quaternion orientation, Matrix objectWorld, Vector3 speed)
         {

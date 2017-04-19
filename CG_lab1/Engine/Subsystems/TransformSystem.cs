@@ -19,10 +19,10 @@ namespace Manager.Subsystems
 				if (transformComp == null)
 					continue;
 				var scale = transformComp.scale;
-				var rotation = transformComp.orientation;
+				var orientation = transformComp.orientation;
 				var objectWorld = transformComp.objectWorld;
 				var position = transformComp.position;
-				transformComp.objectWorld = Matrix.CreateScale(scale) * Matrix.CreateFromQuaternion(rotation) * Matrix.CreateTranslation(position);
+				transformComp.objectWorld = Matrix.CreateScale(scale) * Matrix.CreateFromQuaternion(orientation) * Matrix.CreateTranslation(position);
 			}
         }
     }
